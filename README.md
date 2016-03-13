@@ -3,6 +3,23 @@
 
 This is a stripped down version of my private hack that I will be updating it when it breaks in the foreseeable future
 
+## Features
+### Aimbot
+silent / non silent
+kinda psient
+projectile
+ignore friends
+### ESP
+box
+health
+index
+friends
+### Glow
+team colored
+### triggerbot
+hitbox or hitgroup
+zoomed only
+
 ## Credits
 
 #### gir489
