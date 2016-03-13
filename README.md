@@ -16,4 +16,7 @@ leaked sdk
 #### Altimor
 netvar class that i have used in all my projects
 
+#### opensteamworks team
+all of the steam/ directory
+
 #### If I have used some of your code and haven't credited you, please tell me (or make a pull request)
