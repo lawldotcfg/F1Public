@@ -23,11 +23,11 @@ zoomed only
 ## Credits
 
 #### gir489
-creater of the darkstorm base
+creater of the darkstorm base and
 the noisemaker spam code
 
 #### Volvo
-source sdk
+source sdk and
 leaked sdk
 
 #### Altimor
