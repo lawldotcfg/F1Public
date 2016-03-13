@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="CHack.cpp">
+      <Filter>Hack\other\main hack</Filter>
+    </ClCompile>
+    <ClCompile Include="CEsp.cpp">
+      <Filter>Hack\modules\CEsp</Filter>
+    </ClCompile>
+    <ClCompile Include="CDrawManager.cpp">
+      <Filter>SDK\CDrawManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CGlow.cpp">
+      <Filter>Hack\modules\CGlow</Filter>
+    </ClCompile>
+    <ClCompile Include="Client.cpp">
+      <Filter>SDK\Hooks\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="Panels.cpp">
+      <Filter>SDK\Hooks\Panels</Filter>
+    </ClCompile>
+    <ClCompile Include="VMTHooks.cpp">
+      <Filter>SDK\Hooks\VMTHooks</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>SDK\Misc\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="CSignature.cpp">
+      <Filter>SDK\Misc\Sigs</Filter>
+    </ClCompile>
+    <ClCompile Include="DLLMain.cpp" />
+    <ClCompile Include="Netvar.cpp">
+      <Filter>NetVars + Offsets\Netvar</Filter>
+    </ClCompile>
+    <ClCompile Include="CGlobalVars.cpp">
+      <Filter>NetVars + Offsets\Offsets</Filter>
+    </ClCompile>
+    <ClCompile Include="CBackstab.cpp">
+      <Filter>Hack\modules\CAutoBackstab</Filter>
+    </ClCompile>
+    <ClCompile Include="CMenu.cpp">
+      <Filter>Hack\other\main menu</Filter>
+    </ClCompile>
+    <ClCompile Include="IHack.cpp">
+      <Filter>Hack</Filter>
+    </ClCompile>
+    <ClCompile Include="CTrigger.cpp">
+      <Filter>Hack\modules\CTriggerBot</Filter>
+    </ClCompile>
+    <ClCompile Include="CBunnyHop.cpp">
+      <Filter>Hack\modules\CBunnyHop</Filter>
+    </ClCompile>
+    <ClCompile Include="CNoise.cpp">
+      <Filter>Hack\modules\CNoise</Filter>
+    </ClCompile>
+    <ClCompile Include="CAimbot.cpp">
+      <Filter>Hack\modules\CAimbot</Filter>
+    </ClCompile>
+    <ClCompile Include="crc32.cpp">
+      <Filter>SDK\Source\crc</Filter>
+    </ClCompile>
+    <ClCompile Include="CAutoAirblast.cpp">
+      <Filter>Hack\modules\CAutoAirblast</Filter>
+    </ClCompile>
+    <ClCompile Include="bf_buffer.cpp">
+      <Filter>SDK\Source\bf_buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="CHackState.cpp">
+      <Filter>Hack\other\hack state</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CHack.h">
+      <Filter>Hack\other\main hack</Filter>
+    </ClInclude>
+    <ClInclude Include="CEsp.h">
+      <Filter>Hack\modules\CEsp</Filter>
+    </ClInclude>
+    <ClInclude Include="CDrawManager.h">
+      <Filter>SDK\CDrawManager</Filter>
+    </ClInclude>
+    <ClInclude Include="IHack.h">
+      <Filter>Hack</Filter>
+    </ClInclude>
+    <ClInclude Include="SDK.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponList.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="CGlow.h">
+      <Filter>Hack\modules\CGlow</Filter>
+    </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>SDK\Hooks\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="Panels.h">
+      <Filter>SDK\Hooks\Panels</Filter>
+    </ClInclude>
+    <ClInclude Include="VMTHooks.h">
+      <Filter>SDK\Hooks\VMTHooks</Filter>
+    </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>SDK\Misc\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="CSignature.h">
+      <Filter>SDK\Misc\Sigs</Filter>
+    </ClInclude>
+    <ClInclude Include="getvfunc.h">
+      <Filter>SDK\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="unlinkpeb.h">
+      <Filter>SDK\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Netvar.h">
+      <Filter>NetVars + Offsets\Netvar</Filter>
+    </ClInclude>
+    <ClInclude Include="CGlobalVars.h">
+      <Filter>NetVars + Offsets\Offsets</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>SDK\CDrawManager</Filter>
+    </ClInclude>
+    <ClInclude Include="IConvar.h">
+      <Filter>SDK\Source\Cvar</Filter>
+    </ClInclude>
+    <ClInclude Include="CBackstab.h">
+      <Filter>Hack\modules\CAutoBackstab</Filter>
+    </ClInclude>
+    <ClInclude Include="CEntity.h">
+      <Filter>NetVars + Offsets\Offsets</Filter>
+    </ClInclude>
+    <ClInclude Include="CMenu.h">
+      <Filter>Hack\other\main menu</Filter>
+    </ClInclude>
+    <ClInclude Include="XorString.h">
+      <Filter>SDK\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="CTrigger.h">
+      <Filter>Hack\modules\CTriggerBot</Filter>
+    </ClInclude>
+    <ClInclude Include="CBunnyHop.h">
+      <Filter>Hack\modules\CBunnyHop</Filter>
+    </ClInclude>
+    <ClInclude Include="CNoise.h">
+      <Filter>Hack\modules\CNoise</Filter>
+    </ClInclude>
+    <ClInclude Include="keyval.h">
+      <Filter>SDK\Source\KeyValues</Filter>
+    </ClInclude>
+    <ClInclude Include="CAimbot.h">
+      <Filter>Hack\modules\CAimbot</Filter>
+    </ClInclude>
+    <ClInclude Include="Util.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="crc32.h">
+      <Filter>SDK\Source\crc</Filter>
+    </ClInclude>
+    <ClInclude Include="Trace.h">
+      <Filter>SDK\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="bspflags.h">
+      <Filter>SDK\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector.h">
+      <Filter>SDK\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="random.h">
+      <Filter>SDK\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="prediction.h">
+      <Filter>SDK\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="CAutoAirblast.h">
+      <Filter>Hack\modules\CAutoAirblast</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassId.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="bf_buffer.h">
+      <Filter>SDK\Source\bf_buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="bitvec.h">
+      <Filter>SDK\Source\bf_buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="valvePlatform.h">
+      <Filter>SDK\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="CUtlVector.h">
+      <Filter>SDK\Source\Utl stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="CUtlMemory.h">
+      <Filter>SDK\Source\Utl stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="backtrace.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="CUtlMemoryPool.h">
+      <Filter>SDK\Source\Utl stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="event.h">
+      <Filter>SDK\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="CUtlLinkedList.h">
+      <Filter>SDK\Source\Utl stuff</Filter>
+    </ClInclude>
+    <ClInclude Include="baseHeaders.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="factory.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="CHackState.h">
+      <Filter>Hack\other\hack state</Filter>
+    </ClInclude>
+    <ClInclude Include="notNullInterface.h">
+      <Filter>SDK</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="NetVars + Offsets">
+      <UniqueIdentifier>{0ee408a2-f967-4793-8f10-129264cd49d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack">
+      <UniqueIdentifier>{3a02f806-fa1f-471d-bb69-5bbd5463ca0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK">
+      <UniqueIdentifier>{e8f0298d-ae31-4fac-954f-7198ec1bfa32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Hooks">
+      <UniqueIdentifier>{2c4b6af2-0433-4e74-ab5b-6879a609efe8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Hooks\Client">
+      <UniqueIdentifier>{68a811c9-f292-4444-8b2b-cb05847f763b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Hooks\Panels">
+      <UniqueIdentifier>{262b0bb9-c8f5-4d17-836a-92048a5a154d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Hooks\VMTHooks">
+      <UniqueIdentifier>{e60c29af-c1a1-4e6f-b390-0f2152df68a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Misc">
+      <UniqueIdentifier>{8ddb646f-65bc-4ac8-87e6-5902472d1bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Misc\Log">
+      <UniqueIdentifier>{be50cbb8-3217-4a9f-b3b2-22e20cac37a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Misc\Sigs">
+      <UniqueIdentifier>{d1d4f59d-01c5-40fa-a2d8-1031732795ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NetVars + Offsets\Netvar">
+      <UniqueIdentifier>{a75c4716-6202-49f4-a5c4-120512000bc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NetVars + Offsets\Offsets">
+      <UniqueIdentifier>{6b8654cf-1921-4791-a1e6-fe8d2368c922}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\CDrawManager">
+      <UniqueIdentifier>{d3073876-24dc-4305-84ec-129a62c24695}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Source">
+      <UniqueIdentifier>{ed8c3195-8cea-4247-8f23-e2099fb61969}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Source\crc">
+      <UniqueIdentifier>{4f362b1e-d7e0-4ea9-8e23-b2b04bfcd47e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Source\KeyValues">
+      <UniqueIdentifier>{2c14ef32-3e5b-4a29-a892-dcd6a7b6c20c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Source\Cvar">
+      <UniqueIdentifier>{946eefe6-e1fd-4bdf-be30-4c9ffdcbb97c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Source\bf_buffer">
+      <UniqueIdentifier>{cba76327-d6bf-40d5-bb1f-16562bc9876b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\modules">
+      <UniqueIdentifier>{ec12fe72-53f9-438c-8b09-aea55f3fe5a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\other">
+      <UniqueIdentifier>{f5d16e02-fbed-442e-9fd8-18fc2ebe8790}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\modules\CTriggerBot">
+      <UniqueIdentifier>{6ac6c926-f302-4eae-8433-64bdb386d496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\modules\CNoise">
+      <UniqueIdentifier>{55d2c2c9-5759-437e-b771-bc4e1eb7353e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\modules\CGlow">
+      <UniqueIdentifier>{e80c32d2-36c3-450d-b9f8-3cd654d4062f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\modules\CEsp">
+      <UniqueIdentifier>{ec7e7ad0-0b54-4842-ad44-37dcbad4c201}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\modules\CBunnyHop">
+      <UniqueIdentifier>{aed79d63-dc21-42aa-b4e5-beb5a3ac1e32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\modules\CAutoBackstab">
+      <UniqueIdentifier>{530cd05c-b8d9-4428-9f9f-c69e2229a6d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\modules\CAutoAirblast">
+      <UniqueIdentifier>{5ef74178-c0b3-4f86-9414-25d5190fbbc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\modules\CAimbot">
+      <UniqueIdentifier>{fce48adc-c5c1-4d52-ba0a-02a43b601c78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\other\main hack">
+      <UniqueIdentifier>{69c1421f-5d22-4378-89c8-9a8f7feb20ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\other\main menu">
+      <UniqueIdentifier>{efb41b5d-7171-4d30-a219-267961ec6385}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDK\Source\Utl stuff">
+      <UniqueIdentifier>{069b77a6-ffdd-4d72-bd4d-a658a6bcd7fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hack\other\hack state">
+      <UniqueIdentifier>{00c268e4-9e59-492b-b6cd-6967eaf78f6f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
