@@ -287,10 +287,34 @@ public:
 class EngineClient
 {
 public:
-	void GetScreenSize(int &width, int &height)
+		void GetScreenSize(int &width, int &height)
 	{
+
+		// call the engine function
 		typedef void(__thiscall * OriginalFn)(PVOID, int &, int &);
-		return getvfunc<OriginalFn>(this, 5)(this, width, height);
+		getvfunc<OriginalFn>(this, 5)(this, width, height);
+
+		// if we are fullscreen these will be 0
+		if(width == 0 || height == 0)
+		{
+			RECT size;
+
+			// get the desktop window, it should have the same res as the fullscreen window
+			HWND desktopWindow = GetDesktopWindow();
+
+			if(desktopWindow)
+			{
+				GetWindowRect(desktopWindow, &size);
+
+				width = size.right - size.left;
+				height = size.bottom - size.top;
+
+				//Log::Console("Right: %d, Left: %d", size.right, size.left);
+				//Log::Console("Bottom: %d, Top: %d", size.bottom, size.top);
+
+				//Log::Console("Height: %d, width: %d", height, width);
+			}
+		}
 	}
 	bool GetPlayerInfo(int ent_num, player_info_t *pinfo)
 	{
