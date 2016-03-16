@@ -9,6 +9,8 @@ int CMenu::keyEvent(ButtonCode_t keynum)
 		if(activeVars == nullptr)
 			if(hacks.size() != 0)
 				activeVars = &hacks[0]->variables;
+				
+		return 0;
 	}
 
 	if(bMenuActive)
@@ -77,6 +79,8 @@ int CMenu::keyEvent(ButtonCode_t keynum)
 			return 0;
 		}
 	}
+	// by default get the engine to process the key press
+	return 1;
 }
 
 void CMenu::menu()
