@@ -108,11 +108,6 @@ bool CESP::inEntityLoop(int index)
 			gDrawManager.DrawString("esp", vecScreen.x, vecScreen.y, teamColor, XorString("%i"), player.index()); //Draw on the player.
 			vecScreen.y += gDrawManager.GetESPHeight();
 		}
-
-		if(variables[8].bGet())
-		{
-			
-		}
 	}
 	else if(id == classId::CObjectDispenser || id == classId::CObjectSapper || id == classId::CObjectSentrygun || id == classId::CObjectTeleporter)
 	{
