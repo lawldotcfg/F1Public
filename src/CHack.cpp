@@ -279,9 +279,9 @@ void CHack::intro()
 
 		Color c(255, 0, 0, 255);
 		gInts.Cvar->ConsolePrintf(XorString("_____________________________________________\n"));
-		gInts.Cvar->ConsoleColorPrintf(c, XorString("  __| _ |  _ \       |     | _)      \n"));
-		gInts.Cvar->ConsoleColorPrintf(c, XorString("  _|    |  __/ |  |   _ \  |  |   _| \n"));
-		gInts.Cvar->ConsoleColorPrintf(c, XorString(" _|    _| _|  \_,_| _.__/ _| _| \__| \n"));
+		gInts.Cvar->ConsoleColorPrintf(c, XorString("  __| _ |  _ \\       |     | _)      \n"));
+		gInts.Cvar->ConsoleColorPrintf(c, XorString("  _|    |  __/ |  |   _ \\  |  |   _| \n"));
+		gInts.Cvar->ConsoleColorPrintf(c, XorString(" _|    _| _|  \\_,_| _.__/ _| _| \\__| \n"));
 		gInts.Cvar->ConsoleColorPrintf(c, XorString("F1Public hack loaded successfully.\n"));
 		gInts.Cvar->ConsoleColorPrintf(c, XorString("Have Fun!\n"));
 		gInts.Cvar->ConsolePrintf(XorString("_____________________________________________\n"));
