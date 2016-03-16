@@ -3,6 +3,9 @@
 
 This is a stripped down version of my private hack that I will be updating it when it breaks in the foreseeable future
 
+### CI:
+https://ci.appveyor.com/project/josh33901/f1public/build/artifacts
+
 ## Features
 ### Aimbot
 silent / non silent
