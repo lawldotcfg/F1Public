@@ -43,17 +43,18 @@ void CHack::paintTraverse(PVOID pPanels, int edx, unsigned int vguiPanel, bool f
 			if(szName[0] == 'M' && szName[3] == 'S') //Look for MatSystemTopPanel without using slow operations like strcmp or strstr.
 			{
 				vguiMatSystemTopPanel = vguiPanel;
+				// run our intro
 				Intro();
 			}
 		}
 
 		if(vguiMatSystemTopPanel == vguiPanel) //If we're on MatSystemTopPanel, call our drawing code.
 		{
-			//if ( gInts.Engine->IsDrawingLoadingImage( ) || !gInts.Engine->IsInGame( ) || !gInts.Engine->IsConnected( ) || gInts.Engine->Con_IsVisible( ) || ( ( GetAsyncKeyState( VK_F12 ) || gInts.Engine->IsTakingScreenshot( ) ) ) )
-			//	return; //We don't want to draw at the menu.
+			if(gInts.Engine->IsDrawingLoadingImage() || !gInts.Engine->IsInGame() || !gInts.Engine->IsConnected() || gInts.Engine->Con_IsVisible() || ((GetAsyncKeyState(VK_F12) || gInts.Engine->IsTakingScreenshot())))
+				return; //We don't want to draw at the menu.
 
 			//This section will be called when the player is not at the menu game and can see the screen or not taking a screenshot.
-			gDrawManager.DrawString( "hud", ( gScreenSize.iScreenWidth / 2 ) - 55, 200, gDrawManager.dwGetTeamColor( gLocalPlayerVars.team ), "Welcome to F1" ); //Remove this if you want.
+			gDrawManager.DrawString("hud", (gScreenSize.iScreenWidth / 2) - 55, 200, gDrawManager.dwGetTeamColor(gLocalPlayerVars.team), "Welcome to F1"); //Remove this if you want.
 
 			// debug string stuff
 
@@ -71,7 +72,7 @@ void CHack::paintTraverse(PVOID pPanels, int edx, unsigned int vguiPanel, bool f
 			//gDrawManager.DrawString("hud", 0, y, COLOR_OBJ, "diff: %f", gLocalPlayerVars.flNextAttack - gInts.Globals->curtime);
 			//y += gDrawManager.GetHudHeight();
 
-
+			// call painttraverse for all hacks
 			for(auto &hack : men.hacks)
 			{
 				if(hack != nullptr)
@@ -239,14 +240,11 @@ void CHack::intro()
 		//	CDumper nDumper;
 		//	nDumper.SaveDump( );
 		//}
-
-		// TODO - MOVE ELSEWHERE
-
-		//men.addHack( new CNoPunch( ) );
 		
 		// TODO the hacks should add themselves
 		// we should NOT add them
 
+		// try to load all of the modules
 		_TRY
 		{
 			men.addHack(new CESP());
@@ -264,6 +262,7 @@ void CHack::intro()
 			throw e;
 		}
 
+		// run their init function (this could be rolled into the constructor??
 		for(auto &hack : men.hacks)
 		{
 			_TRY
@@ -276,6 +275,8 @@ void CHack::intro()
 				_REPORT_ERROR(hack, init());
 			}
 		}
+
+		// intro printing stuff to console
 
 		Color c(255, 0, 0, 255);
 		gInts.Cvar->ConsolePrintf(XorString("_____________________________________________\n"));
@@ -314,6 +315,7 @@ void CHack::intro()
 		// causes plenty of problems on some smac servers
 		CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)killCvars, nullptr, 0, nullptr);
 
+		// finally log that we successfully hooked and injected
 		Log::Msg(XorString("Injection Successful")); //If the module got here without crashing, it is good day.
 	}
 	_CATCHMODULE
@@ -427,8 +429,13 @@ void CHack::CHLCreateMove(PVOID CHLClient, int sequence_number, float input_samp
 			}
 		}
 
+		// resign our command so that the engine allows it
+
+		// get the current safe command
 		CVerifiedUserCmd *pSafeCommand = (CVerifiedUserCmd *)(*(DWORD *)(gInts.Input.get() + 0xF8) + (sizeof(CVerifiedUserCmd) * (sequence_number % 90)));
+		// update it with ours
 		pSafeCommand->m_cmd = *pUserCmd;
+		// update the crc with ours
 		pSafeCommand->m_crc = GetChecksumForCmd(pSafeCommand->m_cmd);
 
 	}

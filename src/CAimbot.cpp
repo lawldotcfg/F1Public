@@ -220,8 +220,8 @@ void CAimbot::aim(CUserCmd *pUserCmd)
 	else
 	{
 		// if we cant fire, dont aim (bullettime is a little backwards)
-		if(bulletTime(local, true))
-			return;
+		//if(bulletTime(local, true))
+		//	return;
 	}
 
 	Vector hit = getHitBoxVector(other);
@@ -459,7 +459,7 @@ inline Vector CAimbot::predict(CEntity<> &ent, Vector v)
 			// speed is defined further up
 			float grav = 800.0f;
 
-			v -= (0.5 * (grav * (powf(time, 2))) * gInts.Globals->frametime);
+			v -= (0.5 * grav * powf(time, 2) * gInts.Globals->frametime);
 
 			v += (velocity * time);
 
