@@ -37,7 +37,7 @@ void Log::Init(HMODULE hModule)
 	else
 	{
 		// Shitty manual mapper detected.
-		//MessageBoxA(NULL, "GetModuleFileNameA failed", "ERROR", MB_OK);
+		MessageBoxA(NULL, "GetModuleFileNameA failed\nUsing Fallback location!", "ERROR", MB_OK);
 		//ExitProcess(0);
 		strcpy_s(g_logFile, "hook.log");
 		strcpy_s(g_debugLogFile, "debug.log");
