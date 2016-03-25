@@ -12,9 +12,6 @@ const char *CESP::name() const
 
 bool CESP::inEntityLoop(int index)
 {
-
-	quickCrash();
-
 	if(!variables[0].get<bool>())
 		return false;
 

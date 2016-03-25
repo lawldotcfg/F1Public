@@ -2,6 +2,8 @@
 
 // base, common and standalone headers are defined here
 
+//#define ALT_BUILD
+
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <math.h>

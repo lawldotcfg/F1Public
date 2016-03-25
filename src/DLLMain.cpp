@@ -17,10 +17,12 @@ BOOL APIENTRY DllMain(HMODULE hInstance, DWORD dwReason, LPVOID lpReserved)
 	if(dwReason == DLL_PROCESS_ATTACH)
 	{
 
-#ifdef ALT_BUILD
+#ifndef ALT_BUILD
 		//DisableThreadLibraryCalls(hInstance);
 		UnlinkModuleFromPEB(hInstance);
 		RemovePEHeader((DWORD)hInstance);
+#else
+#pragma message("ALT_BUILD ENABLED")
 #endif
 		Log::Init(hInstance);
 
