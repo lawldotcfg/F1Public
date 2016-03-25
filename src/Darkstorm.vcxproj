@@ -122,6 +122,7 @@
     <ClCompile Include="Panels.cpp" />
     <ClCompile Include="CSignature.cpp" />
     <ClCompile Include="VMTHooks.cpp" />
+	<ClCompile Include="backtrace.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="backtrace.h" />

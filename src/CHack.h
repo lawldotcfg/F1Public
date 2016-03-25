@@ -34,7 +34,6 @@ public:
 	void intro();
 	// hooked in key event
 	int keyEvent(PVOID CHClient, int edx, int eventcode, ButtonCode_t keynum, const char *currentBinding);
-	void CHLCreateMove(PVOID CHLClient, int sequence_number, float input_sample_time, bool active, bool &sendPacket);
 
 	void runCommand(IPrediction *pPred, CBaseEntity *player, CUserCmd *ucmd, IMoveHelper *moveHelper) const;
 };

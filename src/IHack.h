@@ -30,13 +30,13 @@ struct vecVars
 
 	vecVars()
 	{
-		index = 0;
+		index  = 0;
 		parent = nullptr;
 	}
 
 	vecVars(vecVars *p)
 	{
-		index = 0;
+		index  = 0;
 		parent = p;
 	}
 
@@ -64,7 +64,6 @@ struct vecVars
 		return vars[index];
 	}
 };
-
 
 // stupid, increadibly hacky var class for bool, int and float
 // allows us to store all of these types in one type (for vectors)
@@ -136,8 +135,8 @@ public:
 
 	void init(float min, float max, float step, float def)
 	{
-		min_.fMin = min;
-		max_.fMax = max;
+		min_.fMin   = min;
+		max_.fMax   = max;
 		step_.fStep = step;
 
 		fVal = def;
@@ -145,8 +144,8 @@ public:
 
 	void init(int min, int max, int step, int def)
 	{
-		min_.iMin = min;
-		max_.iMax = max;
+		min_.iMin   = min;
+		max_.iMax   = max;
 		step_.iStep = step;
 
 		iVal = def;
@@ -220,10 +219,12 @@ public:
 		return false;
 	}
 
+	/*
 	virtual bool chlmove(CUserCmd *pUserCmd)
 	{
 		return false;
 	}
+	*/
 
 	// called during keyevent
 	virtual bool keyEvent(ButtonCode_t keynum)

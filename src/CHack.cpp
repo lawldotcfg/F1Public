@@ -32,7 +32,9 @@ void CHack::paintTraverse(PVOID pPanels, int edx, unsigned int vguiPanel, bool f
 {
 	_TRY
 	{
-		VMTManager &hook = VMTManager::GetHook(pPanels);																									  //Get a pointer to the instance of your VMTManager with the function GetHook.
+		_INSTALL_SEH_TRANSLATOR();
+
+		VMTManager &hook = VMTManager::GetHook(pPanels);																								 //Get a pointer to the instance of your VMTManager with the function GetHook.
 		hook.GetMethod<void(__thiscall *)(PVOID, unsigned int, bool, bool)>(gOffsets.paintTraverseOffset)(pPanels, vguiPanel, forceRepaint, allowForce); //Call the original.
 
 		static unsigned int vguiMatSystemTopPanel;
@@ -81,6 +83,7 @@ void CHack::paintTraverse(PVOID pPanels, int edx, unsigned int vguiPanel, bool f
 					{
 						hack->paint(); // call each hacks paint function
 					}
+					_CATCH_SEH_REPORT_ERROR(hack, paint())
 					_CATCH
 					{
 						//Log::Error(XorString("Error with hack `%s' in paint!"), hack->name());
@@ -103,6 +106,7 @@ void CHack::paintTraverse(PVOID pPanels, int edx, unsigned int vguiPanel, bool f
 						{
 							hack->inEntityLoop(i); // call each hacks paint in entity loop function
 						}
+						_CATCH_SEH_REPORT_ERROR(hack, inEntityList())
 						_CATCH
 						{
 							//Log::Error(XorString("Error with hack `%s' in paint!"), hack->name());
@@ -123,82 +127,79 @@ void CHack::paintTraverse(PVOID pPanels, int edx, unsigned int vguiPanel, bool f
 	{
 		Log::Error("other error in CHack::paintTraverse");
 	}
-		//Log::Fatal(XorString("Failed PaintTraverse"));
+	//Log::Fatal(XorString("Failed PaintTraverse"));
 }
 //===================================================================================
 
 // for commands and movement
 bool CHack::createMove(PVOID ClientMode, int edx, float input_sample_frametime, CUserCmd *pUserCmd)
 {
-	auto &hook = VMTManager::GetHook(ClientMode);
-	bool bReturn = hook.GetMethod<bool(__thiscall *)(PVOID, float, CUserCmd *)>(gOffsets.createMoveOffset)(ClientMode, input_sample_frametime, pUserCmd);
-
-	CEntity<> local{me};
-	CBaseEntity *localEnt = local.castToPointer<CBaseEntity>();
-
-	// this should NEVER happen
-	if(local.isNull())
-		throw;
-
-	#pragma region player vars
-
-	// update our stats every game tick
-	gLocalPlayerVars.Class	= local.get<tf_classes>(gEntVars.iClass);
-	gLocalPlayerVars.cond	= local.get<int>(gEntVars.iPlayerCond);
-	gLocalPlayerVars.condEx = local.get<int>(gEntVars.iPlayerCondEx);
-	gLocalPlayerVars.health = local.get<int>(gEntVars.iHealth);
-	gLocalPlayerVars.team	= local.get<int>(gEntVars.iTeam);
-	gLocalPlayerVars.cmdNum = pUserCmd->command_number;
-
-	CBaseEntity *pLocalWep = gInts.EntList->GetClientEntity(HANDLE2INDEX(local.get<int>(gEntVars.hActiveWeapon)));
-
-	if(pLocalWep)
-	{
-		gLocalPlayerVars.activeWeapon = pLocalWep->GetClientClass()->iClassID;
-
-		gLocalPlayerVars.flNextAttack = CEntity<>{pLocalWep->GetIndex()}.get<float>(gEntVars.flNextPrimaryAttack);
-	}
-	else
-		gLocalPlayerVars.activeWeapon = static_cast<classId>(-1);
-
-	#pragma endregion
-
-	#pragma region player prediction
-	// back up globals as the prediction increments them
-	float frameTime = gInts.Globals->frametime;
-	float currTime = gInts.Globals->curtime;
-
-	gLocalPlayerVars.pred.oldOrigin = localEnt->GetAbsOrigin();
-	CUtilMove::runSimulation(gInts.Prediction, pUserCmd->command_number, gInts.Globals->curtime, pUserCmd, localEnt);
-	gLocalPlayerVars.pred.origin = localEnt->GetAbsOrigin();
-
-	// restore backups
-	gInts.Globals->frametime = frameTime;
-	gInts.Globals->curtime = currTime;
-	#pragma endregion
-
-	// set these before the hacks run
-	// we cant have these in chlmove as by that point they have already run
-
-	silentData.fMove = pUserCmd->forwardmove;
-	silentData.sMove = pUserCmd->sidemove;
-	silentData.view = pUserCmd->viewangles;
-
 	_TRY
 	{
-		for(int i = 0; i < men.hacks.size(); i++)
+		_INSTALL_SEH_TRANSLATOR();
+
+		auto &hook   = VMTManager::GetHook(ClientMode);
+		bool bReturn = hook.GetMethod<bool(__thiscall *)(PVOID, float, CUserCmd *)>(gOffsets.createMoveOffset)(ClientMode, input_sample_frametime, pUserCmd);
+
+		CEntity<> local{me};
+		CBaseEntity *localEnt = local.castToPointer<CBaseEntity>();
+
+		// this should NEVER happen
+		if(local.isNull())
+			throw;
+
+		// update our stats every game tick
+		gLocalPlayerVars.Class  = local.get<tf_classes>(gEntVars.iClass);
+		gLocalPlayerVars.cond   = local.get<int>(gEntVars.iPlayerCond);
+		gLocalPlayerVars.condEx = local.get<int>(gEntVars.iPlayerCondEx);
+		gLocalPlayerVars.health = local.get<int>(gEntVars.iHealth);
+		gLocalPlayerVars.team   = local.get<int>(gEntVars.iTeam);
+		gLocalPlayerVars.cmdNum = pUserCmd->command_number;
+
+		CBaseEntity *pLocalWep = gInts.EntList->GetClientEntity(HANDLE2INDEX(local.get<int>(gEntVars.hActiveWeapon)));
+
+		if(pLocalWep)
 		{
-			if(men.hacks[i] != nullptr)
+			gLocalPlayerVars.activeWeapon = pLocalWep->GetClientClass()->iClassID;
+
+			gLocalPlayerVars.flNextAttack = CEntity<>{pLocalWep->GetIndex()}.get<float>(gEntVars.flNextPrimaryAttack);
+		}
+		else
+			gLocalPlayerVars.activeWeapon = static_cast<classId>(-1);
+
+		// back up globals as the prediction increments them
+		float frameTime = gInts.Globals->frametime;
+		float currTime  = gInts.Globals->curtime;
+
+		gLocalPlayerVars.pred.oldOrigin = localEnt->GetAbsOrigin();
+		CUtilMove::runSimulation(gInts.Prediction, pUserCmd->command_number, gInts.Globals->curtime, pUserCmd, localEnt);
+		gLocalPlayerVars.pred.origin = localEnt->GetAbsOrigin();
+
+		// restore backups
+		gInts.Globals->frametime = frameTime;
+		gInts.Globals->curtime   = currTime;
+
+		// set these before the hacks run
+		// we cant have these in chlmove as by that point they have already run
+
+		silentData.fMove = pUserCmd->forwardmove;
+		silentData.sMove = pUserCmd->sidemove;
+		silentData.view  = pUserCmd->viewangles;
+
+		for(auto &hack : men.hacks)
+		{
+			if(hack != nullptr)
 			{
 				_TRY
 				{
-					men.hacks[i]->move(pUserCmd); // call each hacks move function
+					hack->move(pUserCmd); // call each hacks move function
 				}
+				_CATCH_SEH_REPORT_ERROR(hack, move())
 				_CATCH
 				{
 					//Log::Error(XorString("Error with hack `%s' in move!"), men.hacks[i]->name());
 					//throw;
-					_REPORT_ERROR(men.hacks[i], move(pUserCmd));
+					_REPORT_ERROR(hack, move(pUserCmd));
 				}
 			}
 			else
@@ -240,7 +241,7 @@ void CHack::intro()
 		//	CDumper nDumper;
 		//	nDumper.SaveDump( );
 		//}
-		
+
 		// TODO the hacks should add themselves
 		// we should NOT add them
 
@@ -306,7 +307,7 @@ void CHack::intro()
 		//	}
 		//}
 
-		for(auto& hack : men.hacks)
+		for(auto &hack : men.hacks)
 		{
 			gInts.Cvar->ConsoleColorPrintf(c, "Loaded %s\n", hack->name());
 		}
@@ -338,8 +339,10 @@ int CHack::keyEvent(PVOID CHLClient, int edx, int eventcode, ButtonCode_t keynum
 	int ret;
 	_TRY
 	{
-		VMTManager &hook = VMTManager::GetHook(CHLClient); // Get a pointer to the instance of your VMTManager with the function GetHook.
-		ret = hook.GetMethod<int(__thiscall *)(PVOID, int, int, const char *)>(gOffsets.keyEvent)(CHLClient, eventcode, static_cast<int>(keynum), currentBinding); // Call the original.
+		_INSTALL_SEH_TRANSLATOR();
+
+		VMTManager &hook = VMTManager::GetHook(CHLClient);																														// Get a pointer to the instance of your VMTManager with the function GetHook.
+		ret			  = hook.GetMethod<int(__thiscall *)(PVOID, int, int, const char *)>(gOffsets.keyEvent)(CHLClient, eventcode, static_cast<int>(keynum), currentBinding); // Call the original.
 
 		if(eventcode == 1)
 		{
@@ -370,81 +373,5 @@ int CHack::keyEvent(PVOID CHLClient, int edx, int eventcode, ButtonCode_t keynum
 	}
 
 	return ret;
-}
-//===================================================================================
-void CHack::CHLCreateMove(PVOID CHLClient, int sequence_number, float input_sample_time, bool active, bool &sendPacket)
-{
-	_TRY
-	{
-		// use this cmd accross all hacks
-		CUserCmd *pUserCmd = gInts.Input->GetUserCmd(sequence_number);
-
-		VMTManager& hook = VMTManager::GetHook(CHLClient); //Get a pointer to the instance of your VMTManager with the function GetHook.
-		hook.GetMethod<void(__thiscall *)(PVOID, int, float, bool)>(gOffsets.createMoveOffset)(CHLClient, sequence_number, input_sample_time, active); //Call the original.
-
-		CEntity<> local{me};
-
-		for(auto& hack : men.hacks)
-		{
-			_TRY
-			{
-				hack->chlmove(pUserCmd);
-			}
-			_CATCH
-			{
-				//Log::Error(XorString("Error with hack `%s' in chlmove!"), hack->name());
-				//throw;
-				_REPORT_ERROR(hack, chlMove(pUserCmd));
-			}
-		}
-
-
-		// this should always happen, but we can never be sure
-		if(!local.isNull())
-		{
-			bool shooting = true;
-
-			if(bulletTime(local, true))
-				shooting = false;
-
-			if(pUserCmd->buttons & IN_ATTACK && shooting)
-			{
-				sendPacket = false;
-			}
-			else if(!(pUserCmd->buttons & IN_ATTACK))
-			{
-				// only reset the angles if we are not attacking
-				sendPacket = true;
-
-				pUserCmd->viewangles = silentData.view;
-				//gInts.Engine->SetViewAngles(silentData.view);
-
-				// dont set these
-				//pUserCmd->sidemove = silentData.sMove;
-				//pUserCmd->forwardmove = silentData.fMove;
-			}
-			else
-			{
-				sendPacket = true;
-			}
-		}
-
-		// resign our command so that the engine allows it
-
-		// get the current safe command
-		CVerifiedUserCmd *pSafeCommand = (CVerifiedUserCmd *)(*(DWORD *)(gInts.Input.get() + 0xF8) + (sizeof(CVerifiedUserCmd) * (sequence_number % 90)));
-		// update it with ours
-		pSafeCommand->m_cmd = *pUserCmd;
-		// update the crc with ours
-		pSafeCommand->m_crc = GetChecksumForCmd(pSafeCommand->m_cmd);
-
-	}
-	_CATCHMODULE
-	{
-		//Log::Fatal(XorString("Error with CHLMove!"));
-		Log::Error("%s", e.what());
-	}
-
-	return;
 }
 //===================================================================================

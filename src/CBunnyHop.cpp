@@ -3,12 +3,12 @@
 #include "SDK.h"
 #include "CEntity.h"
 
-const char* CBunnyHop::name() const
+const char *CBunnyHop::name() const
 {
 	return "Misc Actions";
 }
 
-bool CBunnyHop::chlmove(CUserCmd *pUserCmd)
+bool CBunnyHop::move(CUserCmd *pUserCmd)
 {
 
 	CEntity<> local{me};

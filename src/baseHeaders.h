@@ -42,13 +42,13 @@
 #ifdef __XOR
 #include "XorString.h" // compile time string encryption
 #else
-#define XorString( X ) X
-#define XorS( X, String ) String
+#define XorString(X) X
+#define XorS(X, String) String
 #endif
 
-#define FLOW_OUTGOING	0		
-#define FLOW_INCOMING	1
-#define MAX_FLOWS		2		// in & out
+#define FLOW_OUTGOING 0
+#define FLOW_INCOMING 1
+#define MAX_FLOWS 2 // in & out
 
 #define CHECK_VALID(...) ((void)0)
 
@@ -64,3 +64,9 @@ public:
 	ClientClass *pNextClass;
 	classId iClassID;
 };
+
+inline void quickCrash()
+{
+	volatile int x = 0;
+	*(int *)x = 5;
+}

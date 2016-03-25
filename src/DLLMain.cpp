@@ -16,9 +16,12 @@ BOOL APIENTRY DllMain(HMODULE hInstance, DWORD dwReason, LPVOID lpReserved)
 	//If you manually map, make sure you setup this function properly.
 	if(dwReason == DLL_PROCESS_ATTACH)
 	{
+
+#ifdef ALT_BUILD
 		//DisableThreadLibraryCalls(hInstance);
 		UnlinkModuleFromPEB(hInstance);
 		RemovePEHeader((DWORD)hInstance);
+#endif
 		Log::Init(hInstance);
 
 		gInts.thisDll = hInstance;

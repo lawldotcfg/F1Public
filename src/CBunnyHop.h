@@ -6,8 +6,8 @@ class CBunnyHop : public IHack
 {
 	var bunny_bool = var("Bunny hop", type_t::Bool);
 	var taunt_bool = var("Taunt slide", type_t::Bool);
-public:
 
+public:
 	CBunnyHop()
 	{
 		variables.push_back(bunny_bool);
@@ -15,5 +15,5 @@ public:
 	}
 
 	const char *name() const override;
-	bool chlmove(CUserCmd*) override;
+	bool move(CUserCmd *) override;
 };

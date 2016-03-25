@@ -17,7 +17,6 @@ public:
 
 	const char *name() const override;
 	bool move(CUserCmd *pCommand) override;
-	virtual bool chlmove(CUserCmd *pUserCmd) override;
 
 private:
 	// internal

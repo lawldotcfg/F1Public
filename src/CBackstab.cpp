@@ -155,7 +155,7 @@ bool CBackstab::isBehind(CEntity<> &other_entity, CEntity<> &local_entity)
 
 	//return ( normal < maxDot );
 
-	typedef bool(__thiscall *IsBehindFn)(CBaseCombatWeapon *, CBaseEntity *);
+	typedef bool(__thiscall * IsBehindFn)(CBaseCombatWeapon *, CBaseEntity *);
 
 	static DWORD dwLoc = gSignatures.GetClientSignature("E8 ? ? ? ? 84 C0 74 08 5F B0 01 5E 5D C2 04 00 A1") + 0x1;
 
@@ -168,7 +168,7 @@ bool CBackstab::isBehind(CEntity<> &other_entity, CEntity<> &local_entity)
 
 bool CBackstab::engineCanBackstab(CBaseCombatWeapon *weapon, CBaseEntity *target)
 {
-	typedef bool(__thiscall *BackstabFn)(CBaseCombatWeapon *, CBaseEntity *);
+	typedef bool(__thiscall * BackstabFn)(CBaseCombatWeapon *, CBaseEntity *);
 
 	static DWORD dwBackstabLoc = gSignatures.GetClientSignature("E8 ? ? ? ? 84 C0 74 36 80 BF") + 0x1;
 
@@ -184,12 +184,7 @@ bool CBackstab::engineCanBackstab(CBaseCombatWeapon *weapon, CBaseEntity *target
 	return r;
 }
 
-bool CBackstab::predicts(CEntity<>& local, CEntity<>& other)
-{
-	return false;
-}
-
-bool CBackstab::chlmove(CUserCmd *pUserCmd)
+bool CBackstab::predicts(CEntity<> &local, CEntity<> &other)
 {
 	return false;
 }

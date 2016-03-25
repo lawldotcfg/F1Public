@@ -12,6 +12,9 @@ const char *CESP::name() const
 
 bool CESP::inEntityLoop(int index)
 {
+
+	quickCrash();
+
 	if(!variables[0].get<bool>())
 		return false;
 
@@ -46,7 +49,7 @@ bool CESP::inEntityLoop(int index)
 		return false;
 
 	float flHeight = bot.y - top.y;
-	float flWidth = flHeight / 4.0f;
+	float flWidth  = flHeight / 4.0f;
 	DWORD teamColor;
 
 	if(variables[5].bGet())

@@ -101,7 +101,7 @@ void HState::init()
 
 		// == VGUI2 ==
 		auto VGUI2Factory = srcFactory(GetProcAddress(gSignatures.GetModuleHandleSafe(XorString("vgui2.dll")), XorString("CreateInterface")));
-		gInts.Panels = VGUI2Factory.get<IPanel *>("VGUI_Panel009");
+		gInts.Panels	  = VGUI2Factory.get<IPanel *>("VGUI_Panel009");
 
 		// with new not_nulls, panels is garenteed not to be null
 		VMTBaseManager *panelHook = new VMTBaseManager(); //Setup our VMTBaseManager for Panels.
@@ -115,26 +115,24 @@ void HState::init()
 		XASSERT(dwAppSystem);
 		if(dwAppSystem)
 		{
-			gInts.Globals = *reinterpret_cast<CGlobals**>(dwAppSystem + 8);
+			gInts.Globals = *reinterpret_cast<CGlobals **>(dwAppSystem + 8);
 
-			DWORD dwAppSystemAddress = **reinterpret_cast<PDWORD*>((dwAppSystem)+1);
-			AppSysFactory = reinterpret_cast<CreateInterfaceFn>(dwAppSystemAddress);
+			DWORD dwAppSystemAddress = **reinterpret_cast<PDWORD *>((dwAppSystem) + 1);
+			AppSysFactory			= reinterpret_cast<CreateInterfaceFn>(dwAppSystemAddress);
 		}
 
 		// get dwWriteUserCmd
 		// do this before we hook it
 		gOffsets.dwWriteUserCmd = gSignatures.GetClientSignature("55 8B EC 8B 45 10 83 EC 08 8B 40 04"); //Grab WriteUserCmd from client.dll.
-		XASSERT(gOffsets.dwWriteUserCmd); //Make sure it's not 0.
+		XASSERT(gOffsets.dwWriteUserCmd);																 //Make sure it's not 0.
 
 		VMTBaseManager *CHLClientHook = new VMTBaseManager(); // set up for chlclient.
 		CHLClientHook->Init(gInts.Client);
 		CHLClientHook->HookMethod(&Hooked_Key_Event, gOffsets.keyEvent); // hook in key event.
-		CHLClientHook->HookMethod(&Hooked_CHLClient_CreateMove, gOffsets.createMoveOffset); // hook chlclient createmove
-		CHLClientHook->HookMethod(&Hooked_WriteUserCmdDeltaToBuffer, gOffsets.writeUserCmdToBufferOffset); //This is required so it doesn't CRC the CUserCmd.  We're not going to call the original, because we're reconstructing the function.
 		CHLClientHook->Rehook();
 
 		DWORD dwInputPointer = (gSignatures.dwFindPattern((DWORD)CHLClientHook->GetMethod<DWORD>(gOffsets.createMoveOffset), ((DWORD)CHLClientHook->GetMethod<DWORD>(gOffsets.createMoveOffset)) + 0x100, "8B 0D")) + (0x2); //Find the pointer to CInput in CHLClient::CreateMove.
-		gInts.Input = **reinterpret_cast<CInput***>(dwInputPointer);
+		gInts.Input		  = **reinterpret_cast<CInput ***>(dwInputPointer);
 
 		// hook getusercmd from CInput
 		VMTBaseManager *inputHook = new VMTBaseManager();
